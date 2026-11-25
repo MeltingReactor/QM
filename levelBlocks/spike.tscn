@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://jtmwvvpcllpa"]
+
+[ext_resource type="Script" uid="uid://5o6qquir3jgl" path="res://Scripts/spike.gd" id="1_7k7bx"]
+[ext_resource type="Texture2D" uid="uid://cdgflgv68ha0w" path="res://Sprites/blocksTileset.png" id="1_8ryga"]
+[ext_resource type="AudioStream" uid="uid://csnf6xba6q7rm" path="res://Sound/hitHurt.wav" id="3_mfqsv"]
+
+[node name="spike" type="StaticBody2D" unique_id=1546836832]
+collision_mask = 2
+script = ExtResource("1_7k7bx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1054619501]
+texture = ExtResource("1_8ryga")
+region_enabled = true
+region_rect = Rect2(64, 0, 16, 16)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=915590073]
+polygon = PackedVector2Array(-1, 1, -2, 1, -2, 2, -3, 2, -3, 3, -4, 3, -4, 4, -5, 4, -5, 5, -6, 5, -6, 6, -7, 6, -7, 8, 7, 8, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 0, -1, 0)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1112336002]
+collision_mask = 2
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D" unique_id=1803605789]
+polygon = PackedVector2Array(-1, 0, -2, 0, -2, 1, -3, 1, -3, 2, -4, 2, -4, 3, -5, 3, -5, 4, -6, 4, -6, 5, -7, 5, -7, 6, -8, 6, -8, 8, 8, 8, 8, 6, 7, 6, 7, 5, 6, 5, 6, 4, 5, 4, 5, 3, 4, 3, 4, 2, 3, 2, 3, 1, 2, 1, 2, 0, 1, 0, 1, -1, -1, -1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=713608608]
+stream = ExtResource("3_mfqsv")
+bus = &"SFX"
+
+[node name="ExtraWaitout" type="Timer" parent="." unique_id=2136153768]
+wait_time = 1.2
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="timeout" from="ExtraWaitout" to="." method="_on_extra_waitout_timeout"]

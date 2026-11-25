@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dupxr4ggn26do"]
+
+[ext_resource type="FontFile" uid="uid://6rj2guwm73si" path="res://Resources/Fonts/PixelifySans-Bold.ttf" id="1_egc6y"]
+[ext_resource type="FontFile" uid="uid://currre0258pgi" path="res://Resources/Fonts/PixelifySans-Medium.ttf" id="2_lt2ag"]
+[ext_resource type="Script" uid="uid://bkx7q7umk3xtx" path="res://button.gd" id="3_lt2ag"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgns8"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" unique_id=888543707]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1273442822]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lgns8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1010447757]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 33
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=223445133]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33773902, 0.19441518, 0.9999835, 1)
+theme_override_colors/font_shadow_color = Color(0.32745114, 0.73225534, 1.1551381e-06, 1)
+theme_override_constants/shadow_outline_size = 13
+theme_override_fonts/font = ExtResource("1_egc6y")
+theme_override_font_sizes/font_size = 76
+text = "QM Compleated!
+Well done!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1729446791]
+custom_minimum_size = Vector2(131.232, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(5.7756904e-07, 0.62288237, 0.57550544, 1)
+theme_override_colors/font_focus_color = Color(5.7756904e-07, 0.62288237, 0.57550544, 1)
+theme_override_colors/font_pressed_color = Color(4.1392445e-06, 0.8020573, 0.7428007, 1)
+theme_override_colors/font_hover_color = Color(1.540184e-06, 0.6772228, 0.62644, 1)
+theme_override_fonts/font = ExtResource("2_lt2ag")
+theme_override_font_sizes/font_size = 48
+text = "Quit"
+script = ExtResource("3_lt2ag")
+
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_pressed"]

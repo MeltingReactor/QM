@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://p12ort6b1sq"]
+
+[ext_resource type="Script" uid="uid://cyciwrp6mlqx4" path="res://Scripts/flag.gd" id="1_733vk"]
+[ext_resource type="Texture2D" uid="uid://cdgflgv68ha0w" path="res://Sprites/blocksTileset.png" id="1_l1sgl"]
+[ext_resource type="AudioStream" uid="uid://c7yrv0bonufcj" path="res://Sound/win.wav" id="3_cwaxh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amn8n"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(48, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukulb"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts4f7"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7xjy"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcbnv"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rssqg"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(80, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esaoi"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(80, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwdpu"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1htw"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(48, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5jik"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(32, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfqd6"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lmhj"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_077ng"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1sgl"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(48, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e86ph"]
+atlas = ExtResource("1_l1sgl")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1gre2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amn8n")
+}, {
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_ukulb")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_ts4f7")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_v7xjy")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_pcbnv")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_rssqg")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_esaoi")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_uwdpu")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_y1htw")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_d5jik")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_bfqd6")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_3lmhj")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_077ng")
+}],
+"loop": 0,
+"name": &"down",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1sgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e86ph")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[node name="Flag" type="Area2D" unique_id=1705265530]
+collision_mask = 2
+script = ExtResource("1_733vk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=606660124]
+sprite_frames = SubResource("SpriteFrames_1gre2")
+animation = &"down"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1184971120]
+polygon = PackedVector2Array(-7, -5, -4, -5, -4, -4, -1, -4, -1, -5, 1, -5, 1, -6, 4, -6, 4, -5, 7, -5, 7, 0, 4, 0, 4, -1, 1, -1, 1, 0, -1, 0, -1, 1, -4, 1, -4, 0, -5, 0, -5, 8, -7, 8)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=454707722]
+stream = ExtResource("3_cwaxh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

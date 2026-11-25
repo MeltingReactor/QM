@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://brsxmj20jtcu"]
+
+[ext_resource type="Texture2D" uid="uid://cdgflgv68ha0w" path="res://Sprites/blocksTileset.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://bbxvdjhmrfgli" path="res://Scripts/player.gd" id="1_onrkg"]
+[ext_resource type="AudioStream" uid="uid://ymyohoh0uuyt" path="res://Sound/jump.wav" id="3_i3pqv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(64, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_onrkg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=1780862195]
+collision_layer = 3
+script = ExtResource("1_onrkg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1151445755]
+sprite_frames = SubResource("SpriteFrames_onrkg")
+animation = &"death"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1759697708]
+polygon = PackedVector2Array(-3, -5, -3, -5, 3, -5, 3, -4, 5, -4, 5, -1, 6, -1, 6, 1, 7, 1, 7, 8, -7, 8, -7, 1, -6, 1, -6, -1, -4, -1, -4, -4, -3, -4)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1042014959]
+zoom = Vector2(3, 3)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2096520769]
+stream = ExtResource("3_i3pqv")
+bus = &"SFX"
+
+[node name="Deadzone" type="Timer" parent="." unique_id=7398680]
+wait_time = 1.1649999999999998
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
